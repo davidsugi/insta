@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tags extends Model
 {
+  
+
 	protected $fillable = [
         'tag', 'update_internal', 'last_upd',
     ];
@@ -25,10 +27,10 @@ class Tags extends Model
     	}
     	else if($v==2)
     	{
-    		return "15 menit";
+    		return "30 menit";
     	}
     	else if($v==3){
-    		return "5 menit";
+    		return "15 menit";
     	}
         else if($v==4){
             return "tidak pernah";
@@ -37,6 +39,6 @@ class Tags extends Model
 
     public function getLastAttribute()
     {
-    	return $this->last_upd->format('d-m-Y');
+    	return $this->last_upd->format('d-m-Y h:i');
     }
 }

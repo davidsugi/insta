@@ -68,8 +68,8 @@
 					@php ($q=old('update_internal'))
 				@endif>
 					<option value="1" {{ $q==1 ? "selected" : ""}}>1 Jam</option>
-					<option value="2" {{$q==2 ? "selected" : ""}}>15 menit</option>
-					<option value="3" {{$q==3 ? "selected" : ""}}>5 menit</option>
+					<option value="2" {{$q==2 ? "selected" : ""}}>30 menit</option>
+					<option value="3" {{$q==3 ? "selected" : ""}}>15 menit</option>
 					<option value="4" {{$q==4 ? "selected" : ""}}>tidak pernah</option>
 				
 			</select>
