@@ -36,7 +36,8 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+    
+        return redirect()->to('login')->with('warning', 'Registration is disabled.');
     }
 
     /**

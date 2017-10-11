@@ -215,12 +215,7 @@
                                 Logged in as Guest
                             </li>
                             <li class="user-footer">
-                                <div class="pull-left">
-                                <a href="{{ route('login') }}"class="btn btn-default btn-flat"><span class="glyphicon glyphicon-log-in"></span> Login</a></div>
-                                <div class="pull-right">
-                                    
-                                        <a href="{{ route('register') }}" class="btn btn-default btn-flat"><span class="glyphicon glyphicon-user"></span> Register</a>
-                                    </div>
+                                <a href="{{ route('login') }}"class="btn btn-default btn-flat"><span class="glyphicon glyphicon-log-in"></span> Login</a>
                                     </li>
                             </ul>
                         </li>
