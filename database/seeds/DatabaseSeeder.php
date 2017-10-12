@@ -15,5 +15,11 @@ class DatabaseSeeder extends Seeder
             'tag' => 'eddywedding2016',
             'update_internal' => 1,
         ]);
+
+        DB::table('users')->insert([
+            'name' => 'admin',
+            'email' => 'admin@eddyweding.com',
+            'password' => bcrypt("secret"),
+        ]);
     }
 }

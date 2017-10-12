@@ -105,6 +105,7 @@ class TagsController extends Controller
         $res= Tags::findOrFail($id);
         session()->flash('msg','data domain'.$res->tag."berhasil diubah!"); 
         $res->delete();
+        $res->medias()->delete();
         return redirect('tags');
     }
 

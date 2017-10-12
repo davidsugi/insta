@@ -18,7 +18,7 @@ class MediaController extends Controller
 
      public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->except('api_index');
     }
     
     public function index()
@@ -94,12 +94,15 @@ class MediaController extends Controller
 
     public function api_index(request $request)
     {
-
-        $medias= new Media;
+        if($request->key=="xyFp8ZxJ2s"){
+           $medias= new Media;
         if($request->tag){
             $tag= Tags::where('tag',$request->tag)->first();
-            if($tag)
+            if($tag){
                $medias= $medias->where('tag_id',$tag->id);
+            }
+           else{return [];}
+            
         }
         if($request->sort){
             $medias= $medias->orderBy($request->sort, "desc");
@@ -108,7 +111,18 @@ class MediaController extends Controller
             $medias= $medias->limit($request->max);
         }
         $medias= $medias->get();
+        
+        if(empty($medias))
+          return []; 
+
         return $medias;
+         
+        }
+        else{
+            return [];
+        }
+        
+        
         # notes_copy_db(from_database_name, to_database_name)e...
     }
 }
