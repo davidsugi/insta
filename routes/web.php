@@ -19,6 +19,11 @@ Route::get('/', 'TagsController@index')->name('home');
 Auth::routes();
 
 Route::get('/home', 'TagsController@index')->name('home');
-
+Route::resource('listpeople','ListPersonController');
+Route::resource('detaillist','DetailListController');
 Route::resource('medias','MediaController');
 Route::resource('tags','TagsController');
+Route::get('/detaillist/createid/{id}', 'DetailListController@createid')->name('detaillist.create.id');
+
+
+// Route::resource('list','ListPersonController');

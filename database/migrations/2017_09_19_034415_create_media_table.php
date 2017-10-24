@@ -24,6 +24,8 @@ class CreateMediaTable extends Migration
             $table->timestamp('date');
             $table->boolean('is_video');
             $table->integer('owner_id');
+            $table->string('username');
+            $table->string('location')->nullable();
             $table->longText('caption')->nullable();
             $table->timestamps();
         });

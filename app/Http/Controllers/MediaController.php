@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 
 use App\Media;
 use App\Tags;
+use App\ListPerson;
+use App\DetailList;
 
 class MediaController extends Controller
 {
@@ -96,6 +98,13 @@ class MediaController extends Controller
     {
         if($request->key=="xyFp8ZxJ2s"){
            $medias= new Media;
+
+        if($request->exclude_list){
+            $listn = ListPerson::where('list',$request->exclude_list)->first();
+            $det = DetailList::where('list_id',$listn->id)->get();
+            $ex = $det->pluck('username');
+            $medias =$medias->whereNotIn('username', $ex);
+        }
         if($request->tag){
             $tag= Tags::where('tag',$request->tag)->first();
             if($tag){
@@ -109,6 +118,12 @@ class MediaController extends Controller
         }
         if($request->max){
             $medias= $medias->limit($request->max);
+        }
+        if($request->maxDate){
+            $medias= $medias->where('date','<',$request->maxDate);
+        }
+        if($request->minDate){
+            $medias= $medias->where('date','>',$request->minDate);
         }
         $medias= $medias->get();
         

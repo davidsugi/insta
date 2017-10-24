@@ -57,6 +57,10 @@ class updateData extends Command
 
                 foreach ($obj->tag->media->nodes as $a)
                 {
+                        $usernames = $client->get('https://www.instagram.com/p/'.$a->code.'/?__a=1');
+                $objUsr=json_decode($usernames->getBody());
+
+
                     $med = Media::where('ig_id',$a->id)->where('tag_id',$tag->id)->first();
                     $this->info('swimming at lake of crystal...');
                     if(empty($med))
@@ -71,6 +75,11 @@ class updateData extends Command
                     $med->thumbnail_src=$a->thumbnail_src;
                     $med->is_video=$a->is_video;
                     $med->code=$a->code;
+                    $med->username = $objUsr->graphql->shortcode_media->owner->username;
+                    if($objUsr->graphql->shortcode_media->location)
+                    {
+                    $med->location = $objUsr->graphql->shortcode_media->location->name;      
+                    }
                     $this->info("med:".json_encode($med));
                     $med->date=Carbon::createFromTimestamp($a->date);
 

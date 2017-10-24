@@ -59,6 +59,17 @@
                             </ul>
                         </li>
 
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-fw fa-star"></i>
+                                <span>List</span>
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="{{ route('listpeople.index') }}"><i class="fa fa-angle-double-right"></i> View</a></li>
+                                <li><a href="{{ route('listpeople.create') }}"><i class="fa fa-angle-double-right"></i> Create</a></li>
+                            </ul>
+                        </li>
 {{-- 
                         <li class="treeview">
                             <a href="#">

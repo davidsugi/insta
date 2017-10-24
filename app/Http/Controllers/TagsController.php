@@ -103,7 +103,7 @@ class TagsController extends Controller
     public function destroy($id)
     {
         $res= Tags::findOrFail($id);
-        session()->flash('msg','data domain'.$res->tag."berhasil diubah!"); 
+        session()->flash('msg','data tags '.$res->tag."berhasil dihapus!"); 
         $res->delete();
         $res->medias()->delete();
         return redirect('tags');
