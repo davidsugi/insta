@@ -96,21 +96,29 @@ class MediaController extends Controller
 
     public function api_index(request $request)
     {
-        if($request->key=="xyFp8ZxJ2s"){
-           $medias= new Media;
+        if($request->key!=env("AUTH_KEY_API")){
+            return response()->json(['error'=> "unauthenticated"], 401);
+        }
+        $medias= new Media;
 
         if($request->exclude_list){
             $listn = ListPerson::where('list',$request->exclude_list)->first();
+            if(!$listn){
+                return response()->json(['error'=> "list not found"], 404);
+            }
             $det = DetailList::where('list_id',$listn->id)->get();
             $ex = $det->pluck('username');
             $medias =$medias->whereNotIn('username', $ex);
         }
         if($request->tag){
             $tag= Tags::where('tag',$request->tag)->first();
+
             if($tag){
                $medias= $medias->where('tag_id',$tag->id);
             }
-           else{return [];}
+           else{
+                return response()->json(['error'=> "Tag not found"], 404);
+           }
             
         }
         if($request->sort){
@@ -131,13 +139,6 @@ class MediaController extends Controller
           return []; 
 
         return $medias;
-         
-        }
-        else{
-            return [];
-        }
         
-        
-        # notes_copy_db(from_database_name, to_database_name)e...
     }
 }
