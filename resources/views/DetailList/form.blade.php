@@ -46,7 +46,7 @@
 		 {{ csrf_field() }}
 		<fieldset class="form-group {{ $errors->has('username') ? ' has-error' : '' }}">
 			<label for="username">Username</label>
-			<input type="text" class="form-control" name="username" id="username" placeholder="Masukan List Nama" @if(isset($lis))
+			<input type="text" class="form-control" name="username" id="username" placeholder="Masukan Username anda" @if(isset($lis))
 				value="{{ $lis->username }}"
 			@elseif(isset($errors))
 				 value="{{ old('username') }}"
@@ -66,7 +66,7 @@
 		 {{ csrf_field() }}
 		<fieldset class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
 			<label for="naem">Nama</label>
-			<input type="text" class="form-control" name="name" id="name" placeholder="Masukan List Nama" @if(isset($lis))
+			<input type="text" class="form-control" name="name" id="name" placeholder="Masukan Nama pemilik username" @if(isset($lis))
 				value="{{ $lis->name }}"
 			@elseif(isset($errors))
 				 value="{{ old('name') }}"

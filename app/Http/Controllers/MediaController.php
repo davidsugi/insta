@@ -122,7 +122,11 @@ class MediaController extends Controller
             
         }
         if($request->sort){
-            $medias= $medias->orderBy($request->sort, "desc");
+            $request->sort = strtolower($request->sort);
+            if($request->sort=="likes" || $request->sort=="username" || $request->sort=="date" || $request->sort=="location")
+                $medias= $medias->orderBy($request->sort, "desc");
+            else
+                return response()->json(['error'=> "sort method not found"], 404);
         }
         if($request->max){
             $medias= $medias->limit($request->max);

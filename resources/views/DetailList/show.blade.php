@@ -34,7 +34,7 @@
 		display:none;
 	}
 	.modal-body>p{
-		font-size:40px;
+		font-size:20px;
 	}
 
 	.modal-body>p>span{
